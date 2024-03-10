@@ -1,3 +1,4 @@
+
 public class BasicoIterator implements Iterator <Hamburguesa> {
     private Basico menuBasico;
     private int indice;

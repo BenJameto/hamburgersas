@@ -1,7 +1,7 @@
 public class Main {
     public static void main(String[] args) {
         Lector lector = new Lector ();
-        Basico menu = new Basico();
+        IterableCollection<Hamburguesa> menu = new Especial();
         lector.leeMenu(menu);
     }
 }

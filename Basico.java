@@ -1,3 +1,4 @@
+
 public class Basico implements IterableCollection <Hamburguesa>{
     Hamburguesa platillos[] = new Hamburguesa [3];
     public Basico (){

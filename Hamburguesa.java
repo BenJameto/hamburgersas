@@ -1,5 +1,5 @@
-public class Hamburguesa {
 
+public class Hamburguesa {
     String id;
     String nombre;
     String descripcion;
