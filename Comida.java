@@ -1,5 +1,11 @@
 import java.io.*;
-
+/**
+* Metodo que verifica que Platillo y Hamburguesa si implementan Template y muestran la preparacion de una hamburguesa vegana o no
+* @author @Clausyari
+* @author @axlducloux
+* @author @Benjameto
+* @date 2024.03.10
+*/
 public class Comida{
     public static void main(String[] args) {
 

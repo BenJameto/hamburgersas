@@ -1,3 +1,10 @@
+/**
+ * Metodo que verifica que los menus sean mostrados correctamente
+ * @author @Clausyari
+ * @author @axlducloux
+ * @author @Benjameto
+ * @date 2024.03.10
+ */
 public class Main {
     public static void main(String[] args) {
         Lector lector = new Lector ();
