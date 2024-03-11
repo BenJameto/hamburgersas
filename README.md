@@ -1,2 +1,6 @@
-# hamburgersas
-implements itarator, template and state pathern's
+# Modelado y Programacion 
+### Practica 02
+
+## Integrantes
+
+@Clausyari || Osorio López Claudia Yarinet 316256098
