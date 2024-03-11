@@ -5,23 +5,21 @@
  * realizar ciertas acciones.
  */
 
-class EstadoSuspendido implements EstadoRobot{
+class EstadoSuspendido implements EstadoRobot {
 
     Robot robot;
 
-    public EstadoSuspendido(Robot robot){
-
+    public EstadoSuspendido(Robot robot) {
         this.robot = robot;
     }
 
-	/**
- 	* El robot debe estar encendido todo el tiempo esperando a que un cliente lo active, pero si no está trabajando puede estar suspendido. 
- 	*/
+    /**
+     * El robot debe estar encendido todo el tiempo esperando a que un cliente lo active, pero si no está trabajando puede estar suspendido. 
+     */
     @Override
-    public void activar(){
-
+    public void activar() {
         System.out.println("El robot ha sido activado, comenzando a caminar hacia el cliente");
-		System.out.println("       __");
+        System.out.println("       __");
         System.out.println("      /  \\");
         System.out.println("     /    \\");
         System.out.println("    /      \\");
@@ -29,7 +27,7 @@ class EstadoSuspendido implements EstadoRobot{
         System.out.println("  /__________\\");
         System.out.println(" |            |");
         System.out.println(" |    COOK    |");
-        System.out.println(" |    Master  |        Voy más rapido que flash");
+        System.out.println(" |    Master  |        Voy más rápido que flash");
         System.out.println(" |    3000    |");
         System.out.println(" |____________|");
         System.out.println("   |  |  |  |");
@@ -39,21 +37,17 @@ class EstadoSuspendido implements EstadoRobot{
         System.out.println("  /|__|__|__|\\");
         System.out.println(" /____________\\");
         System.out.println("/______________\\");
-    }
-        
         robot.setState(robot.getEstadoCaminando());
     }
 
-
-	/**
- 	* El robot se encuentra suspendido por lo que no puede cambiar de estado a caminar 
- 	*/
+    /**
+     * El robot se encuentra suspendido por lo que no puede cambiar de estado a caminar 
+     */
     @Override
-    public void caminar(){
-
-        System.out.println("El robot no puede caminar mientras esta suspendido, seleccione la opcion de activar");
-		System.out.println(" Z Z z z z z z z ");
-		System.out.println("       __");
+    public void caminar() {
+        System.out.println("El robot no puede caminar mientras está suspendido, seleccione la opción de activar");
+        System.out.println(" Z Z z z z z z z ");
+        System.out.println("       __");
         System.out.println("      /  \\");
         System.out.println("     /    \\");
         System.out.println("    /      \\");
@@ -73,15 +67,14 @@ class EstadoSuspendido implements EstadoRobot{
         System.out.println("/______________\\");
     }
 
-	/**
- 	* El robot se encuentra suspendido por lo que no puede cambiar de estado a atender
- 	*/
+    /**
+     * El robot se encuentra suspendido por lo que no puede cambiar de estado a atender
+     */
     @Override
-    public void atender(){
-
-        System.out.println("El robot no lo puede atender mientras esta suspendido, seleccione la opcion de activar");
-		System.out.println(" Z Z z z z z z z ");
-		System.out.println("       __");
+    public void atender() {
+        System.out.println("El robot no lo puede atender mientras está suspendido, seleccione la opción de activar");
+        System.out.println(" Z Z z z z z z z ");
+        System.out.println("       __");
         System.out.println("      /  \\");
         System.out.println("     /    \\");
         System.out.println("    /      \\");
@@ -101,15 +94,14 @@ class EstadoSuspendido implements EstadoRobot{
         System.out.println("/______________\\");
     }
 
-	/**
- 	* El robot se encuentra suspendido por lo que no puede cambiar de estado a cocinar
- 	*/
+    /**
+     * El robot se encuentra suspendido por lo que no puede cambiar de estado a cocinar
+     */
     @Override
-    public void cocinar(){
-
-        System.out.println("El robot no puede cocinar mientras esta suspendido, seleccione la opcion de activar");
-		System.out.println(" Z Z z z z z z z ");
-	    System.out.println("       __");
+    public void cocinar() {
+        System.out.println("El robot no puede cocinar mientras está suspendido, seleccione la opción de activar");
+        System.out.println(" Z Z z z z z z z ");
+        System.out.println("       __");
         System.out.println("      /  \\");
         System.out.println("     /    \\");
         System.out.println("    /      \\");
@@ -128,16 +120,15 @@ class EstadoSuspendido implements EstadoRobot{
         System.out.println(" /____________\\");
         System.out.println("/______________\\");
     }
-    
 
-	/**
- 	* El robot se encuentra suspendido por lo que no es necesario suspenderlo de nuevo
- 	*/
-    public void suspender(){
-
+    /**
+     * El robot se encuentra suspendido por lo que no es necesario suspenderlo de nuevo
+     */
+    @Override
+    public void suspender() {
         System.out.println("El robot ya se encuentra suspendido");
-		System.out.println(" Z Z z z z z z z ");
-	    System.out.println("       __");
+        System.out.println(" Z Z z z z z z z ");
+        System.out.println("       __");
         System.out.println("      /  \\");
         System.out.println("     /    \\");
         System.out.println("    /      \\");
@@ -145,7 +136,7 @@ class EstadoSuspendido implements EstadoRobot{
         System.out.println("  /__________\\");
         System.out.println(" |            |");
         System.out.println(" |    COOK    |");
-        System.out.println(" |    Master  |        Esto tambien cansa,dejen dormir en paz ");
+        System.out.println(" |    Master  |        Esto también cansa, dejen dormir en paz ");
         System.out.println(" |    3000    |");
         System.out.println(" |____________|");
         System.out.println("   |  |  |  |");
@@ -155,6 +146,5 @@ class EstadoSuspendido implements EstadoRobot{
         System.out.println("  /|__|__|__|\\");
         System.out.println(" /____________\\");
         System.out.println("/______________\\");
-		
     }
-
+}

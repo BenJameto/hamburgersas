@@ -119,7 +119,7 @@ class EstadoCocinando implements EstadoRobot{
         System.out.println("   |  |  |  |");
         System.out.println("  /|__|__|__|\\");
         System.out.println(" /____________\\");
-        System.out.println("/______________\\");");                                                                                                            
+        System.out.println("/______________\\");                                                                                                            
 
         robot.cocinar(robot.orden);
         System.out.println("Regresando a estado suspendido");
