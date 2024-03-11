@@ -1,211 +1,182 @@
 /*
- * Clase que representa al robot encargado de la cocina en Macburgers.
+ * Clase que representa al robot encargado de la cocina en Mcburgers.
  */
-class Robot{
+class Robot {
 
     // Atributo para almacenar la orden recibida del cliente para comenzar a cocinar
-    public Mcburguesa orden;
-    
-    // Estado actual del robot 
+    public Platillo orden;
+
+    // Estado actual del robot
     private EstadoRobot estadoActual;
 
     // Menú del día
-    private Menu menuDelDia;
-    
+    private IterableCollection<Platillo> menuBasico;
+
     // Menú general
-    private Menu menuGeneral;
-    
+    private IterableCollection<Platillo> menuGeneral;
+
     // Menú de lujo
-    private Menu menuDeLujo;
+    private IterableCollection<Platillo> menuDeLujo;
 
-    // Estado del robot: suspendido
-    private EstadoRobot estadoSuspendido;
-    
-    // Estado del robot: caminando
-    private EstadoRobot estadoCaminando;
-    
-    // Estado del robot: atendiendo
-    private EstadoRobot estadoAtendiendo;
-    
-    // Estado del robot: cocinando
-    private EstadoRobot estadoCocinando;
-
-
-        /**
+    /**
      * Constructor para inicializar el robot.
      * Se establecen los estados y los menús disponibles.
      */
-    public Robot(){
+    public Robot(IterableCollection<Platillo> menuGeneral, IterableCollection<Platillo> menuBasico,
+            IterableCollection<Platillo> menuDeLujo) {
         // Estados del robot
-        estadoSuspendido = new EstadoSuspendido(this);
-        estadoCaminando = new EstadoCaminando(this);
-        estadoAtendiendo = new EstadoAtendiendo(this);
-        estadoCocinando = new EstadoCocinando(this);
-
-        estadoActual = estadoSuspendido;
+        estadoActual = new EstadoSuspendido(this);
         orden = null;
 
         // Menús disponibles
-        this.menuGeneral = new MenuGeneral();
-        this.menuDelDia = new MenuDelDia();
-        this.menuDeLujo = new MenuDeLujo();
+        this.menuGeneral = menuGeneral;
+        this.menuBasico = menuBasico;
+        this.menuDeLujo = menuDeLujo;
     }
 
     /**
      * Obtiene el estado actual del robot y verifica si está suspendido.
      */
-    public EstadoRobot getEstadoSuspendido(){
-        return this.estadoSuspendido;
+    public EstadoRobot getEstadoSuspendido() {
+        return this.estadoActual;
     }
 
     /**
      * Obtiene el estado actual del robot y verifica si está caminando.
      */
-    public EstadoRobot getEstadoCaminando(){
-        return this.estadoCaminando;
+    public EstadoRobot getEstadoCaminando() {
+        return this.estadoActual;
     }
 
     /**
      * Obtiene el estado actual del robot y verifica si está atendiendo.
      */
-    public EstadoRobot getEstadoAtendiendo(){
-        return this.estadoAtendiendo;
+    public EstadoRobot getEstadoAtendiendo() {
+        return this.estadoActual;
     }
 
     /**
      * Obtiene el estado actual del robot y verifica si está cocinando.
      */
-    public EstadoRobot getEstadoCocinando(){
-        return this.estadoCocinando;
+    public EstadoRobot getEstadoCocinando() {
+        return this.estadoActual;
     }
 
     /**
      * Cambia el estado del robot.
      */
-    public void setState(EstadoRobot nuevoEstado){
+    public void setState(EstadoRobot nuevoEstado) {
         this.estadoActual = nuevoEstado;
     }
 
     /**
      * Activa el robot.
      */
-    public void activar(){
+    public void activar() {
         estadoActual.activar();
     }
 
     /**
      * El robot comienza a caminar.
      */
-    public void caminar(){
+    public void caminar() {
         estadoActual.caminar();
     }
 
     /**
      * El robot inicia la atención al cliente.
      */
-    public void atender(){
+    public void atender() {
         estadoActual.atender();
     }
 
     /**
      * El robot comienza a cocinar.
      */
-    public void cocinar(){
+    public void cocinar() {
         estadoActual.cocinar();
     }
 
     /**
-     * El robot cocina una hamburguesa.
-     * @param ham Hamburguesa a cocinar.
+     * El robot cocina un platillo.
+     * 
+     * @param platillo Platillo a cocinar.
      */
-    public void cocinar(Mcburguesa ham){
-        Burguer mac;
-        if(ham.getVegetariana()){
-            mac = new VeganBurguer(ham);
-        }else{
-            mac = new NormalBurguer(ham);
-        }
+    public void cocinar(Platillo platillo) {
+        // Aquí debes implementar la lógica para cocinar el platillo
+        platillo.prepararPlatillo();
     }
 
     /**
      * El robot se suspende.
      */
-    public void suspender(){
+    public void suspender() {
         estadoActual.suspender();
     }
 
-        /**
-     * Imprime el menú del restaurante, incluyendo los menús general, del día y de lujo.
+    /**
+     * Imprime el menú del restaurante, incluyendo los menús general, del día y de
+     * lujo.
      */
     public void imprimirMenuCompleto() {
-        // Iteradores para cada tipo de menú
-        MyIterator iteradorGeneral = menuGeneral.createIterator();
-        MyIterator iteradorDelDia = menuDelDia.createIterator();
-        MyIterator iteradorDeLujo = menuDeLujo.createIterator();
-
         // Imprimir menú general
         System.out.println("---- Menú General ----");
-        imprimirMenu(iteradorGeneral);
+        imprimirMenu(menuGeneral);
 
         // Imprimir menú del día
         System.out.println("---- Menú del Día ----");
-        imprimirMenu(iteradorDelDia);
+        imprimirMenu(menuBasico);
 
         // Imprimir menú de lujo
         System.out.println("---- Menú de Lujo ----");
-        imprimirMenu(iteradorDeLujo);
+        imprimirMenu(menuDeLujo);
     }
 
     /**
-     * Imprime los productos de un menú específico utilizando el iterador proporcionado.
-     * @param iterador El iterador a utilizar para recorrer el menú.
+     * Imprime los productos de un menú específico utilizando el iterador
+     * proporcionado.
+     * 
+     * @param iterableCollection La colección iterable que contiene los platillos del menú.
      */
-    public void imprimirMenu(MyIterator iterador) {
+    public void imprimirMenu(IterableCollection<Platillo> iterableCollection) {
+        Iterator<Platillo> iterador = iterableCollection.createIterator();
         while (iterador.hasNext()) {
-            // Obtener la siguiente Mcburguesa del menú
-            Mcburguesa hamburguesa = (Mcburguesa) iterador.next();
-            // Extraer información de la hamburguesa
-            String id = hamburguesa.getId();
-            String nombre = hamburguesa.getNombre();
-            String descripcion = hamburguesa.getDescripcion();
+            // Obtener el siguiente platillo del menú
+            Platillo platillo = iterador.next();
+            // Extraer información del platillo
+            String id = platillo.id;
+            String nombre = platillo.nombre;
+            String descripcion = platillo.descripcion;
             System.out.println(id + " " + nombre + "\n" + descripcion);
         }
     }
 
     /**
      * Busca los productos de un menú específico utilizando su identificador.
+     * 
      * @param id El identificador del producto a buscar.
-     * @throws InvalidIdException Si el identificador no es válido o no se encuentra en el menú.
+     * @throws InvalidIdException Si el identificador no es válido o no se encuentra
+     *                            en el menú.
      */
-    public void buscarHamburguesa(String id) throws InvalidIdException {
-        MyIterator iteradorGeneral = menuGeneral.createIterator();
-        MyIterator iteradorDelDia = menuDelDia.createIterator();
-        MyIterator iteradorDeLujo = menuDeLujo.createIterator();
+    public void buscarPlatillo(String id) throws InvalidIdException {
+        Iterator<Platillo> iteradorGeneral = menuGeneral.createIterator();
+        Iterator<Platillo> iteradorDelDia = menuBasico.createIterator();
+        Iterator<Platillo> iteradorDeLujo = menuDeLujo.createIterator();
 
         while (iteradorGeneral.hasNext()) {
-            Mcburguesa hamburguesa = (Mcburguesa) iteradorGeneral.next();
-            if (id.equals(hamburguesa.getId())) {
-                this.orden = hamburguesa;
+            Platillo platillo = iteradorGeneral.next();
+            if (id.equals(platillo.id)) {
+                this.orden = platillo;
                 return;
             }
         }
 
         while (iteradorDelDia.hasNext()) {
-            Mcburguesa hamburguesa = (Mcburguesa) iteradorDelDia.next();
-            if (id.equals(hamburguesa.getId())) {
-                this.orden = hamburguesa;
+            Platillo platillo = iteradorDelDia.next();
+            if (id.equals(platillo.id)) {
+                this.orden = platillo;
                 return;
             }
         }
-
-        while (iteradorDeLujo.hasNext()) {
-            Mcburguesa hamburguesa = (Mcburguesa) iteradorDeLujo.next();
-            if (id.equals(hamburguesa.getId())) {
-                this.orden = hamburguesa;
-                return;
-            }
-        }
-
-        throw new InvalidIdException();
     }
 }
